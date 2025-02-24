@@ -1,0 +1,18 @@
+_ENV = Dora
+if scriptPath := Path\getScriptPath ...
+	for path in *[
+			scriptPath
+			Path scriptPath, "Script"
+			Path scriptPath, "Spine"
+			Path scriptPath, "Image"
+			Path scriptPath, "Font"
+		]
+		Content\insertSearchPath 1, path
+else return
+
+import "System.Command"
+import "Data.Config"
+
+Config.chapter = "start.yarn" -- 强制指定从 start 章节开始做测试
+
+Command.chapter!

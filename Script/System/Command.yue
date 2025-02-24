@@ -1,0 +1,73 @@
+_ENV = Dora
+
+commands =
+
+	preload: (...) -> emit "Command.Preload", [...,]
+
+	BGM: (filename) -> Audio\playStream filename, true, 0.5
+
+	stopBGM: -> Audio\stopStream 1.0
+
+	background: (filename, blur = true) -> emit "Command.Background", filename, blur
+
+	figure: (filename, x = 0, y = 0, scale = 1.0) -> emit "Command.Figure", filename, x, y, scale
+
+	inputName: ->
+		import "utf-8" as u8
+		import "UI.InputBox"
+		import "Data.Config"
+		with InputBox hint: "请输入你的姓名"
+			.visible = false
+			\schedule once ->
+				sleep!
+				.visible = true
+			\addTo Director.ui
+			\slot "Inputed", (name) ->
+				Config.charName = u8.sub name, 1, 10
+				\removeFromParent!
+				emit "Story.Advance"
+			coroutine.yield "Command"
+
+	chapter: (filename) ->
+		import "UI.LsdOSBack"
+		import "UI.Story"
+		import "Data.Config"
+		if filename
+			Config.chapter = filename
+		else
+			filename = Config.chapter
+		Director.entry\removeAllChildren!
+		Director.ui\removeAllChildren!
+		Director.entry\gslot "Command.Background", (filename, blur) ->
+			bg = with? Sprite filename
+				bgW, bgH = .width, .height
+				updateBGSize = ->
+					:width, :height = blur and View.size or App.bufferSize
+					.width, .height = if bgW / bgH > width / height
+						bgW * height / bgH, height
+					else
+						width, bgH * width / bgW
+				updateBGSize!
+				\gslot "AppChange", (settingName) -> if settingName == "Size"
+					updateBGSize!
+			return unless bg
+			if blur
+				if child := Director.entry\getChildByTag "background"
+					child\removeFromParent!
+				Director.entry\addChild bg, 0, "background"
+			else
+				if child := Director.ui\getChildByTag "background"
+					child\removeFromParent!
+				Director.ui\addChild bg, 0, "background"
+		Director.entry\addChild with LsdOSBack!
+			.order = -1
+			\alignLayout!
+		Director.ui\addChild with Story filename
+			.order = 0
+			\alignLayout!
+			thread -> \showAsync!
+
+	<index>: (_self, name) -> (...) ->
+		print "[command]: #{name}(#{table.concat [tostring select i, ... for i = 1, select '#', ...], ', '})"
+
+export default commands
