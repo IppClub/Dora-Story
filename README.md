@@ -14,24 +14,6 @@ The Dora Story Engine is a visual novel game framework developed based on Dora S
 
 	Clone or download the project files. In Dora SSR’s Web IDE, use the resource manager on the left to upload the project folder or zip archive and import it into the Dora SSR engine. If uploading a Zip archive, make sure to extract it.
 
-	This project uses Git LFS (Large File Storage) for managing large files. When cloning the project via Git, ensure that Git LFS is installed. You can install Git LFS with the following command:
-
-	```
-	git lfs install
-	```
-
-	After installation, use the following command to clone the project:
-
-	```
-	git lfs clone <repository-url>
-	```
-
-	If you've already cloned the project but haven’t used Git LFS, you can pull the LFS files with:
-
-	```
-	git lfs pull
-	```
-
 3. **Launch the Game**
 
 	In Dora SSR’s Web IDE, click the “Launch Game” button in the bottom-right corner to start the game.
