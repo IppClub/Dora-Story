@@ -133,6 +133,7 @@ This project uses the game code and authorized art assets from *Luv Sense Digita
 
 - [Dora SSR Engine](https://github.com/ippclub/Dora-SSR)
 - [Luv Sense Digital Assets](https://github.com/ippclub/LSD-spine-2x)
+- [YarnFlow](https://github.com/ippclub/YarnFlow) - To use the same Yarn Spinner language on top of any Lua environment, you can try out YarnFlow.
 
 ## Open Source License
 
