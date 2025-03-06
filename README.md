@@ -62,6 +62,14 @@ This project adds the following commands to the Yarn Spinner dialogue system, wh
 
 	Stops the background music.
 
+* **Play Sound Effect**
+
+	```
+	<<SE "Sound/door_knock.wav">>
+	```
+
+	Plays the sound effect. The first parameter is the path to the sound effect file.
+
 * **Start Next Chapter**
 
 	```

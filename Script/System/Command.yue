@@ -8,6 +8,8 @@ commands =
 
 	stopBGM: -> Audio\stopStream 1.0
 
+	SE: (filename) -> Audio\play filename, false
+
 	background: (filename, blur = true) -> emit "Command.Background", filename, blur
 
 	figure: (filename, x = 0, y = 0, scale = 1.0) -> emit "Command.Figure", filename, x, y, scale
