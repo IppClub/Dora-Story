@@ -1,24 +1,89 @@
-{
-	"header": {
-		"lastSavedUnix": "2025-02-20T08:26:43.148Z",
-		"language": "en-GB",
-		"documentType": "yarn",
-		"markupLanguage": "bbcode",
-		"filetypeVersion": "2",
-		"pluginStorage": {
-			"Runner": {}
-		}
-	},
-	"nodes": [
-		{
-			"title": "Start",
-			"tags": "",
-			"body": "<<BGM \"Music/军事学园.mp3\">>\n<<background \"Image/banner.jpg\">>\n\n工作人员: 请稍等……\n\n<<set $charName to \"\">>\n\n<<preload \"liyena\">>\n\n工作人员: 首先，我们需要收集一些基本信息。您的名字是？\n\n-> 我: 提供姓名信息。\n    <<inputName>>\n    <<preload \"vika\">>\n    <<if $charName == \"\">>\n        工作人员: 您未输入姓名，我们将称呼您为“匿名玩家”。\n        <<set $charName to \"匿名玩家\">>\n    <<endif>>\n\n工作人员: {$charName}，再次欢迎您的加入。接下来请认识一下我们自己的伙伴们吧。\n\n<<preload \"villywan\">>\n\n[char id=liyena name=李叶那]嘿，我是李叶那，也可以叫我英荣叶那。别看我这样，我可是能打能跳的，虽然现在不跳舞了，但骨子里的节奏感还在。遇到事儿别怂，我罩你！\n\n<<preload \"ayan\">>\n\n[char id=villywan name=万薇莉]哈喽！我是万薇莉，大家都叫我Villy。虽然我还在上学，但我已经是个‘威力万’的农活小能手啦！不过，我最爱的还是电子游戏，梦想着有一天能做出一个超级酷炫的游戏世界！只要是我决定的事，谁也别想阻挡我的‘威力——万’啦！\n\n<<preload \"moling\">>\n\n[char id=ayan name=阿岩]我是阿岩，一个在虚拟和现实之间搭建桥梁的建筑师，偶尔也会在人生的蓝图上迷失方向。不过，别担心，我总能找到重新开始的方法。Everything was architecture, 包括我们的相遇。\n\n<<preload \"moyu\">>\n\n[char id=moling name=默翎] 午夜是我的主场，实验室比床更适合我——如果有事，直说，别绕弯子。\n\n<<preload \"yuzijiang\">>\n\n[char id=moyu name=默羽] 哎呀，又迟到了吗？我是默羽，这儿的医馆馆长，虽然最近忙得连自己的养生都顾不上了，你们要是有什么不舒服的，还是尽管来找我，保证药到病除！当然，如果你们有故事想讲，我也很乐意听哦。\n\n<<preload \"sunborn\">>\n\n[char id=yuzijiang name=余梓绛/]嗯……你知道为什么程序员总是穿格子衫吗？因为我们是二维生物，只能在矩阵里生存。\n\n<<preload \"ninilite\">>\n\n[char id=sunborn name=向阳珄/]哎呀，别看我年纪轻，幽兰草的事儿可都归我管，叫我三蹦就行！有啥想法尽管说，咱们一起琢磨琢磨怎么把事情办得漂亮。\n\n<<preload \"wuyun\">>\n\n[char id=ninilite name=妮妮莉特/]你知道吗，每次看到你遇到困难，我总忍不住想帮你，毕竟我可是个‘专业’的顾问，虽然有时候我也不知道自己到底要顾啥。\n\n<<preload \"vika\">>\n\n[char id=wuyun name=乌云/]听说你也在找另一个世界的入口？不妨一起聊聊，或许我们能找到共同的答案。\n\n[char id=vika name=维卡/]别看我这样，我可比你想象的要狠得多。不过，只要Vivi在，我就不会失控。\n\n<<preload \"charF\">>\n\n\n[char id=vivi name=维薇/]姐姐总是这样，明明自己都那么脆弱了，还非要逞强。但我……会一直听她的。\n\n<<preload \"charM\">>\n\n[char id=charF name=导师女/]我是你们的辅导员，也是带你们上战场的人——叫我导师也行，反正名字只是个代号。不过，记住一点，不管你们现在表现如何，我都会和你们一起走到最后。有问题随时找我，别觉得不好意思，咱们的目标是一样的。\n\n<<preload \"char\">>\n\n[char id=charM name=导师男/]其实我一直觉得，理解别人比说服别人更重要，毕竟每个人的经历和视角都不同，对吧？所以，聊聊你的想法吧，也许我们能找到一些共同的答案。\n\n[char id=char name=《灵数奇缘》主角/]我现在加入了‘World Update Project’，和‘刍狗’们一起，想找找对抗世界不公的方法。你呢，有什么想法或经历想分享吗？\n\n<<figure \"Image/l-s-d-people.jpg\", 0, 800, 1.5>>\n\n[char name=我/]好耶，认识到所有新伙伴啦。\n\n<<stopBGM>>\n\n<<chapter \"tutorial.yarn\">>",
-			"position": {
-				"x": -100,
-				"y": -100
-			},
-			"colorID": 0
-		}
-	]
-}
+// lastSavedUnix: 2025-04-07T16:12:47.922Z
+
+title: Start
+tags: 
+position: -100,-100
+colorID: 0
+---
+<<BGM "Music/军事学园.mp3">>
+<<background "Image/banner.jpg">>
+
+工作人员: 请稍等……
+
+<<set $charName to "">>
+
+<<preload "liyena">>
+
+工作人员: 首先，我们需要收集一些基本信息。您的名字是？
+
+-> 我: 提供姓名信息。
+    <<inputName>>
+    <<preload "vika">>
+    <<if $charName == "">>
+        工作人员: 您未输入姓名，我们将称呼您为“匿名玩家”。
+        <<set $charName to "匿名玩家">>
+    <<endif>>
+
+工作人员: {$charName}，再次欢迎您的加入。接下来请认识一下我们自己的伙伴们吧。
+
+<<preload "villywan">>
+
+[char id=liyena name=李叶那]嘿，我是李叶那，也可以叫我英荣叶那。别看我这样，我可是能打能跳的，虽然现在不跳舞了，但骨子里的节奏感还在。遇到事儿别怂，我罩你！
+
+<<preload "ayan">>
+
+[char id=villywan name=万薇莉]哈喽！我是万薇莉，大家都叫我Villy。虽然我还在上学，但我已经是个‘威力万’的农活小能手啦！不过，我最爱的还是电子游戏，梦想着有一天能做出一个超级酷炫的游戏世界！只要是我决定的事，谁也别想阻挡我的‘威力——万’啦！
+
+<<preload "moling">>
+
+[char id=ayan name=阿岩]我是阿岩，一个在虚拟和现实之间搭建桥梁的建筑师，偶尔也会在人生的蓝图上迷失方向。不过，别担心，我总能找到重新开始的方法。Everything was architecture, 包括我们的相遇。
+
+<<preload "moyu">>
+
+[char id=moling name=默翎] 午夜是我的主场，实验室比床更适合我——如果有事，直说，别绕弯子。
+
+<<preload "yuzijiang">>
+
+[char id=moyu name=默羽] 哎呀，又迟到了吗？我是默羽，这儿的医馆馆长，虽然最近忙得连自己的养生都顾不上了，你们要是有什么不舒服的，还是尽管来找我，保证药到病除！当然，如果你们有故事想讲，我也很乐意听哦。
+
+<<preload "sunborn">>
+
+[char id=yuzijiang name=余梓绛/]嗯……你知道为什么程序员总是穿格子衫吗？因为我们是二维生物，只能在矩阵里生存。
+
+<<preload "ninilite">>
+
+[char id=sunborn name=向阳珄/]哎呀，别看我年纪轻，幽兰草的事儿可都归我管，叫我三蹦就行！有啥想法尽管说，咱们一起琢磨琢磨怎么把事情办得漂亮。
+
+<<preload "wuyun">>
+
+[char id=ninilite name=妮妮莉特/]你知道吗，每次看到你遇到困难，我总忍不住想帮你，毕竟我可是个‘专业’的顾问，虽然有时候我也不知道自己到底要顾啥。
+
+<<preload "vika">>
+
+[char id=wuyun name=乌云/]听说你也在找另一个世界的入口？不妨一起聊聊，或许我们能找到共同的答案。
+
+[char id=vika name=维卡/]别看我这样，我可比你想象的要狠得多。不过，只要Vivi在，我就不会失控。
+
+<<preload "charF">>
+
+
+[char id=vivi name=维薇/]姐姐总是这样，明明自己都那么脆弱了，还非要逞强。但我……会一直听她的。
+
+<<preload "charM">>
+
+[char id=charF name=导师女/]我是你们的辅导员，也是带你们上战场的人——叫我导师也行，反正名字只是个代号。不过，记住一点，不管你们现在表现如何，我都会和你们一起走到最后。有问题随时找我，别觉得不好意思，咱们的目标是一样的。
+
+<<preload "char">>
+
+[char id=charM name=导师男/]其实我一直觉得，理解别人比说服别人更重要，毕竟每个人的经历和视角都不同，对吧？所以，聊聊你的想法吧，也许我们能找到一些共同的答案。
+
+[char id=char name=《灵数奇缘》主角/]我现在加入了‘World Update Project’，和‘刍狗’们一起，想找找对抗世界不公的方法。你呢，有什么想法或经历想分享吗？
+
+<<figure "Image/l-s-d-people.jpg", 0, 800, 1.5>>
+
+[char name=我/]好耶，认识到所有新伙伴啦。
+
+<<stopBGM>>
+
+<<chapter "tutorial.yarn">>
+===

@@ -220,8 +220,7 @@ _module_0 = Class(Story, { -- 21
 			for i = 1, count do -- 116
 				local option = self._options[i] -- 117
 				name = getCharName(option) -- 118
-				local optionText -- 119
-				optionText = option.text -- 119
+				local optionText = option.text -- 119
 				self.answerList:addChild((function() -- 120
 					local _with_0 = Answer({ -- 120
 						text = optionText -- 120
