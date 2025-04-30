@@ -16,24 +16,6 @@
 
 	&emsp;&emsp;克隆或下载本项目的文件。通过 Dora SSR 的 Web IDE 界面，使用左侧的资源管理器上传项目文件夹或压缩包，将其导入到 Dora SSR 引擎中。如果是上传 Zip 压缩包，记得进行解压。
 
-	&emsp;&emsp;本项目使用 Git LFS（Large File Storage）来管理大文件。在使用 Git 获取项目文件时，请确保已安装 Git LFS。可以通过以下命令安装 Git LFS：
-
-	```
-	git lfs install
-	```
-
-	&emsp;&emsp;安装完成后，使用以下命令克隆项目：
-
-	```
-	git lfs clone <repository-url>
-	```
-
-	&emsp;&emsp;如果已经克隆了项目但未使用 Git LFS，可以通过以下命令拉取 LFS 文件：
-
-	```
-	git lfs pull
-	```
-
 3. **启动游戏**
 
 	&emsp;&emsp;在 Dora SSR 的 Web IDE 界面中，点击右下角的“启动游戏”按钮，即可开始游戏体验。
