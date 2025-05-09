@@ -135,23 +135,23 @@ local commands = setmetatable({ -- 5
 			if not bg then -- 55
 				return -- 55
 			end -- 55
-			if blur then -- 56
-				do -- 57
-					local child = Director.entry:getChildByTag("background") -- 57
-					if child then -- 57
-						child:removeFromParent() -- 58
-					end -- 57
-				end -- 57
-				return Director.entry:addChild(bg, 0, "background") -- 59
-			else -- 61
-				do -- 61
-					local child = Director.ui:getChildByTag("background") -- 61
-					if child then -- 61
-						child:removeFromParent() -- 62
-					end -- 61
-				end -- 61
-				return Director.ui:addChild(bg, 0, "background") -- 63
+			do -- 56
+				local child = Director.entry:getChildByTag("background") -- 56
+				if child then -- 56
+					child:removeFromParent() -- 57
+				end -- 56
 			end -- 56
+			do -- 58
+				local child = Director.ui:getChildByTag("background") -- 58
+				if child then -- 58
+					child:removeFromParent() -- 59
+				end -- 58
+			end -- 58
+			if blur then -- 60
+				return Director.entry:addChild(bg, -1, "background") -- 61
+			else -- 63
+				return Director.ui:addChild(bg, -1, "background") -- 63
+			end -- 60
 		end) -- 43
 		Director.entry:addChild(_anon_func_0(LsdOSBack)) -- 64
 		return Director.ui:addChild(_anon_func_1(Story, filename, thread)) -- 70

@@ -53,14 +53,14 @@ commands =
 				\gslot "AppChange", (settingName) -> if settingName == "Size"
 					updateBGSize!
 			return unless bg
+			if child := Director.entry\getChildByTag "background"
+				child\removeFromParent!
+			if child := Director.ui\getChildByTag "background"
+				child\removeFromParent!
 			if blur
-				if child := Director.entry\getChildByTag "background"
-					child\removeFromParent!
-				Director.entry\addChild bg, 0, "background"
+				Director.entry\addChild bg, -1, "background"
 			else
-				if child := Director.ui\getChildByTag "background"
-					child\removeFromParent!
-				Director.ui\addChild bg, 0, "background"
+				Director.ui\addChild bg, -1, "background"
 		Director.entry\addChild with LsdOSBack!
 			.order = -1
 			\alignLayout!
