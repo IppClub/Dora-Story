@@ -107,227 +107,230 @@ _module_0 = Class(Story, { -- 21
 		end) -- 54
 		self:gslot("Command.Figure", function(filename, x, y, scale) -- 55
 			self.figure:removeAllChildren() -- 56
-			local _with_0 = Sprite(filename) -- 57
-			if _with_0 ~= nil then -- 57
-				_with_0.x, _with_0.y = x, y -- 58
-				_with_0.scaleX = scale -- 59
-				_with_0.scaleY = scale -- 59
-				_with_0:addTo(self.figure) -- 60
+			if not filename then -- 57
+				return -- 57
 			end -- 57
-			return _with_0 -- 57
+			local _with_0 = Sprite(filename) -- 58
+			if _with_0 ~= nil then -- 58
+				_with_0.x, _with_0.y = x, y -- 59
+				_with_0.scaleX = scale -- 60
+				_with_0.scaleY = scale -- 60
+				_with_0:addTo(self.figure) -- 61
+			end -- 58
+			return _with_0 -- 58
 		end) -- 55
-		self._runner = YarnRunner(dialogFile, "Start", Config, Command) -- 61
-		self:advance() -- 62
-		self.reviewVisible = false -- 63
-		self._advancing = false -- 64
-		local nextSentence -- 65
-		nextSentence = function() -- 65
-			if self._advancing then -- 66
-				return -- 66
-			end -- 66
-			if self._options then -- 67
+		self._runner = YarnRunner(dialogFile, "Start", Config, Command) -- 62
+		self:advance() -- 63
+		self.reviewVisible = false -- 64
+		self._advancing = false -- 65
+		local nextSentence -- 66
+		nextSentence = function() -- 66
+			if self._advancing then -- 67
 				return -- 67
 			end -- 67
-			if self:advance() then -- 68
-				return thread(function() -- 69
-					return self:updateDialogAsync() -- 69
-				end) -- 69
-			else -- 71
-				return self:hide() -- 71
+			if self._options then -- 68
+				return -- 68
 			end -- 68
-		end -- 65
-		self:gslot("Story.Advance", function() -- 72
-			self._advancing = false -- 73
-			return nextSentence() -- 74
-		end) -- 72
-		self.confirm:onKeyDown(function(keyName) -- 75
-			if keyName == "Return" then -- 75
-				return nextSentence() -- 75
-			end -- 75
-		end) -- 75
-		self.confirm:slot("Tapped", nextSentence) -- 76
-		self.textArea:slot("NoneScrollTapped", nextSentence) -- 77
-		self.reviewButton:slot("Tapped", function() -- 78
-			if self._advancing then -- 79
-				return -- 79
-			end -- 79
-			self.reviewVisible = true -- 80
-			return self:alignLayout() -- 81
-		end) -- 78
-		self.reviewBack:slot("Tapped", function() -- 82
-			self.reviewVisible = false -- 82
-		end) -- 82
-		self.reviewArea:slot("NoneScrollTapped", function() -- 83
+			if self:advance() then -- 69
+				return thread(function() -- 70
+					return self:updateDialogAsync() -- 70
+				end) -- 70
+			else -- 72
+				return self:hide() -- 72
+			end -- 69
+		end -- 66
+		self:gslot("Story.Advance", function() -- 73
+			self._advancing = false -- 74
+			return nextSentence() -- 75
+		end) -- 73
+		self.confirm:onKeyDown(function(keyName) -- 76
+			if keyName == "Return" then -- 76
+				return nextSentence() -- 76
+			end -- 76
+		end) -- 76
+		self.confirm:slot("Tapped", nextSentence) -- 77
+		self.textArea:slot("NoneScrollTapped", nextSentence) -- 78
+		self.reviewButton:slot("Tapped", function() -- 79
+			if self._advancing then -- 80
+				return -- 80
+			end -- 80
+			self.reviewVisible = true -- 81
+			return self:alignLayout() -- 82
+		end) -- 79
+		self.reviewBack:slot("Tapped", function() -- 83
 			self.reviewVisible = false -- 83
 		end) -- 83
-		do -- 84
-			local _with_0 = Dialog() -- 84
-			_with_0.__modified = function(key, value) -- 85
-				if "character" == key then -- 86
-					if (value ~= nil) and value ~= "" then -- 87
-						self.figure:removeAllChildren() -- 88
-						return self.figure:addChild(StoryFigure({ -- 89
-							char = value -- 89
-						})) -- 89
-					end -- 87
-				elseif "name" == key then -- 90
-					if (value ~= nil) then -- 91
-						self.name.text = value -- 91
-					end -- 91
-				elseif "text" == key then -- 92
-					if (value ~= nil) then -- 93
-						self.text.text = value -- 93
-					end -- 93
-				end -- 93
-			end -- 85
-			_with_0.__updated = function() -- 94
-				return self:alignLayout() -- 94
-			end -- 94
-			self._dialog = _with_0 -- 84
-		end -- 84
-		self._reviews = { } -- 95
-		self.visible = false -- 96
+		self.reviewArea:slot("NoneScrollTapped", function() -- 84
+			self.reviewVisible = false -- 84
+		end) -- 84
+		do -- 85
+			local _with_0 = Dialog() -- 85
+			_with_0.__modified = function(key, value) -- 86
+				if "character" == key then -- 87
+					if (value ~= nil) and value ~= "" then -- 88
+						self.figure:removeAllChildren() -- 89
+						return self.figure:addChild(StoryFigure({ -- 90
+							char = value -- 90
+						})) -- 90
+					end -- 88
+				elseif "name" == key then -- 91
+					if (value ~= nil) then -- 92
+						self.name.text = value -- 92
+					end -- 92
+				elseif "text" == key then -- 93
+					if (value ~= nil) then -- 94
+						self.text.text = value -- 94
+					end -- 94
+				end -- 94
+			end -- 86
+			_with_0.__updated = function() -- 95
+				return self:alignLayout() -- 95
+			end -- 95
+			self._dialog = _with_0 -- 85
+		end -- 85
+		self._reviews = { } -- 96
+		self.visible = false -- 97
 	end, -- 53
-	updateDialogAsync = function(self) -- 98
-		if not self._current then -- 99
-			return -- 99
-		end -- 99
-		if self._advancing then -- 100
+	updateDialogAsync = function(self) -- 99
+		if not self._current then -- 100
 			return -- 100
 		end -- 100
-		self._advancing = true -- 101
-		local name, characterId = getCharName(self._current) -- 102
-		if characterId == 'vivi' then -- 103
-			Cache:loadAsync("spine:vikaFigure") -- 104
-		elseif characterId ~= '' then -- 105
-			Cache:loadAsync("spine:" .. tostring(characterId) .. "Figure") -- 106
-		end -- 103
-		local text = self._current.text -- 107
-		do -- 108
-			local _obj_0 = self._reviews -- 108
-			_obj_0[#_obj_0 + 1] = { -- 108
-				name = name, -- 108
-				text = text -- 108
-			} -- 108
-		end -- 108
-		self._dialog.character = characterId -- 109
-		self._dialog.name = name -- 110
-		self._dialog.text = text -- 111
-		self.answerList:removeAllChildren() -- 112
-		if self._options then -- 113
-			self.continueIcon.visible = false -- 114
-			local count = #self._options -- 115
-			for i = 1, count do -- 116
-				local option = self._options[i] -- 117
-				name = getCharName(option) -- 118
-				local optionText = option.text -- 119
-				self.answerList:addChild((function() -- 120
-					local _with_0 = Answer({ -- 120
-						text = optionText -- 120
-					}) -- 120
-					_with_0:slot("Tapped", function() -- 121
-						_with_0.touchEnabled = false -- 122
-						return thread(function() -- 123
-							sleep(0.3) -- 124
-							do -- 125
-								local _obj_0 = self._reviews -- 125
-								_obj_0[#_obj_0 + 1] = { -- 125
-									name = name, -- 125
-									text = optionText -- 125
-								} -- 125
-							end -- 125
-							if self:advance(i) then -- 126
-								return thread(function() -- 127
-									return self:updateDialogAsync() -- 127
-								end) -- 127
-							else -- 129
-								return self:hide() -- 129
+		if self._advancing then -- 101
+			return -- 101
+		end -- 101
+		self._advancing = true -- 102
+		local name, characterId = getCharName(self._current) -- 103
+		if characterId == 'vivi' then -- 104
+			Cache:loadAsync("spine:vikaFigure") -- 105
+		elseif characterId ~= '' then -- 106
+			Cache:loadAsync("spine:" .. tostring(characterId) .. "Figure") -- 107
+		end -- 104
+		local text = self._current.text -- 108
+		do -- 109
+			local _obj_0 = self._reviews -- 109
+			_obj_0[#_obj_0 + 1] = { -- 109
+				name = name, -- 109
+				text = text -- 109
+			} -- 109
+		end -- 109
+		self._dialog.character = characterId -- 110
+		self._dialog.name = name -- 111
+		self._dialog.text = text -- 112
+		self.answerList:removeAllChildren() -- 113
+		if self._options then -- 114
+			self.continueIcon.visible = false -- 115
+			local count = #self._options -- 116
+			for i = 1, count do -- 117
+				local option = self._options[i] -- 118
+				name = getCharName(option) -- 119
+				local optionText = option.text -- 120
+				self.answerList:addChild((function() -- 121
+					local _with_0 = Answer({ -- 121
+						text = optionText -- 121
+					}) -- 121
+					_with_0:slot("Tapped", function() -- 122
+						_with_0.touchEnabled = false -- 123
+						return thread(function() -- 124
+							sleep(0.3) -- 125
+							do -- 126
+								local _obj_0 = self._reviews -- 126
+								_obj_0[#_obj_0 + 1] = { -- 126
+									name = name, -- 126
+									text = optionText -- 126
+								} -- 126
 							end -- 126
-						end) -- 129
-					end) -- 121
-					return _with_0 -- 120
-				end)()) -- 120
-			end -- 129
-			local size = self.answerList:alignItems(40) -- 130
-			self.answerList.size = size -- 131
-			self.answerList:alignItems(40) -- 132
-		else -- 134
-			self.continueIcon.visible = true -- 134
-		end -- 113
-		self._advancing = false -- 135
-		if self._preloads then -- 136
-			local _list_0 = self._preloads -- 137
-			for _index_0 = 1, #_list_0 do -- 137
-				local item = _list_0[_index_0] -- 137
-				if "" == Path:getExt(item) then -- 138
-					local figureFile -- 139
-					if 'vivi' == item then -- 140
-						figureFile = "spine:vikaFigure" -- 140
-					else -- 141
-						figureFile = "spine:" .. tostring(item) .. "Figure" -- 141
-					end -- 141
-					Cache:loadAsync(figureFile) -- 142
-				else -- 144
-					Cache:loadAsync(item) -- 144
-				end -- 138
-			end -- 144
-			self._preloads = nil -- 145
-		end -- 136
-	end, -- 98
-	showAsync = function(self) -- 147
-		self:updateDialogAsync() -- 148
-		self.visible = true -- 149
-		self._viewScale = View.scale -- 150
-		self._viewEffect = View.postEffect -- 151
-		View.scale = 4 * self._viewScale -- 152
-		local size = View.size -- 153
-		local blurH -- 154
-		do -- 154
-			local _with_0 = Pass("builtin:vs_sprite", "builtin:fs_spriteblurh") -- 154
-			_with_0.grabPass = true -- 155
-			_with_0:set("u_radius", size.width) -- 156
-			blurH = _with_0 -- 154
-		end -- 154
-		local blurV -- 157
-		do -- 157
-			local _with_0 = Pass("builtin:vs_sprite", "builtin:fs_spriteblurv") -- 157
-			_with_0.grabPass = true -- 158
-			_with_0:set("u_radius", size.height) -- 159
-			blurV = _with_0 -- 157
-		end -- 157
-		do -- 160
-			local _with_0 = SpriteEffect() -- 160
-			for _ = 1, 3 do -- 161
-				_with_0:add(blurH) -- 162
-				_with_0:add(blurV) -- 163
-			end -- 163
-			View.postEffect = _with_0 -- 160
-		end -- 160
-		return self:gslot("AppChange", function(settingName) -- 164
-			if settingName == "Size" then -- 164
-				local width, height -- 165
-				do -- 165
-					local _obj_0 = View.size -- 165
-					width, height = _obj_0.width, _obj_0.height -- 165
-				end -- 165
-				blurH:set("u_radius", width) -- 166
-				return blurV:set("u_radius", height) -- 167
+							if self:advance(i) then -- 127
+								return thread(function() -- 128
+									return self:updateDialogAsync() -- 128
+								end) -- 128
+							else -- 130
+								return self:hide() -- 130
+							end -- 127
+						end) -- 130
+					end) -- 122
+					return _with_0 -- 121
+				end)()) -- 121
+			end -- 130
+			local size = self.answerList:alignItems(40) -- 131
+			self.answerList.size = size -- 132
+			self.answerList:alignItems(40) -- 133
+		else -- 135
+			self.continueIcon.visible = true -- 135
+		end -- 114
+		self._advancing = false -- 136
+		if self._preloads then -- 137
+			local _list_0 = self._preloads -- 138
+			for _index_0 = 1, #_list_0 do -- 138
+				local item = _list_0[_index_0] -- 138
+				if "" == Path:getExt(item) then -- 139
+					local figureFile -- 140
+					if 'vivi' == item then -- 141
+						figureFile = "spine:vikaFigure" -- 141
+					else -- 142
+						figureFile = "spine:" .. tostring(item) .. "Figure" -- 142
+					end -- 142
+					Cache:loadAsync(figureFile) -- 143
+				else -- 145
+					Cache:loadAsync(item) -- 145
+				end -- 139
+			end -- 145
+			self._preloads = nil -- 146
+		end -- 137
+	end, -- 99
+	showAsync = function(self) -- 148
+		self:updateDialogAsync() -- 149
+		self.visible = true -- 150
+		self._viewScale = View.scale -- 151
+		self._viewEffect = View.postEffect -- 152
+		View.scale = 4 * self._viewScale -- 153
+		local size = View.size -- 154
+		local blurH -- 155
+		do -- 155
+			local _with_0 = Pass("builtin:vs_sprite", "builtin:fs_spriteblurh") -- 155
+			_with_0.grabPass = true -- 156
+			_with_0:set("u_radius", size.width) -- 157
+			blurH = _with_0 -- 155
+		end -- 155
+		local blurV -- 158
+		do -- 158
+			local _with_0 = Pass("builtin:vs_sprite", "builtin:fs_spriteblurv") -- 158
+			_with_0.grabPass = true -- 159
+			_with_0:set("u_radius", size.height) -- 160
+			blurV = _with_0 -- 158
+		end -- 158
+		do -- 161
+			local _with_0 = SpriteEffect() -- 161
+			for _ = 1, 3 do -- 162
+				_with_0:add(blurH) -- 163
+				_with_0:add(blurV) -- 164
 			end -- 164
-		end) -- 167
-	end, -- 147
-	hide = function(self) -- 169
-		self:gslot("AppChange", nil) -- 170
-		self:emit("Ended") -- 171
-		self:removeFromParent() -- 172
-		local viewScale = self._viewScale -- 173
-		local viewEffect = self._viewEffect -- 174
-		return thread(function() -- 175
-			collectgarbage() -- 176
-			Cache:removeUnused() -- 177
-			View.scale = viewScale -- 178
-			sleep() -- 179
-			View.postEffect = viewEffect -- 180
-		end) -- 180
-	end -- 169
+			View.postEffect = _with_0 -- 161
+		end -- 161
+		return self:gslot("AppChange", function(settingName) -- 165
+			if settingName == "Size" then -- 165
+				local width, height -- 166
+				do -- 166
+					local _obj_0 = View.size -- 166
+					width, height = _obj_0.width, _obj_0.height -- 166
+				end -- 166
+				blurH:set("u_radius", width) -- 167
+				return blurV:set("u_radius", height) -- 168
+			end -- 165
+		end) -- 168
+	end, -- 148
+	hide = function(self) -- 170
+		self:gslot("AppChange", nil) -- 171
+		self:emit("Ended") -- 172
+		self:removeFromParent() -- 173
+		local viewScale = self._viewScale -- 174
+		local viewEffect = self._viewEffect -- 175
+		return thread(function() -- 176
+			collectgarbage() -- 177
+			Cache:removeUnused() -- 178
+			View.scale = viewScale -- 179
+			sleep() -- 180
+			View.postEffect = viewEffect -- 181
+		end) -- 181
+	end -- 170
 }) -- 20
-return _module_0 -- 180
+return _module_0 -- 181

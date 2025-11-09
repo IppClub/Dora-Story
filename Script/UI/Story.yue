@@ -54,6 +54,7 @@ export default Class Story,
 		@gslot "Command.Preload", (items) -> @_preloads = items
 		@gslot "Command.Figure", (filename, x, y, scale) ->
 			@figure\removeAllChildren!
+			return unless filename
 			with? Sprite filename
 				.x, .y = x, y
 				.scaleX = .scaleY = scale

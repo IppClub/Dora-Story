@@ -40,6 +40,12 @@ This project adds the following commands to the Yarn Spinner dialogue system, wh
 
 	Sets the background image. The first parameter is the path to the background image, and the second parameter determines if the image should be blurred.
 
+	```
+	<<noBackground>>
+	```
+
+	Removes the background image.
+
 * **Character Portrait**
 
 	```
@@ -47,6 +53,12 @@ This project adds the following commands to the Yarn Spinner dialogue system, wh
 	```
 
 	Sets the character portrait. The first parameter is the image path, the second is the X-axis offset, the third is the Y-axis offset, and the fourth is the scale of the portrait.
+
+	```
+	<<noFigure>>
+	```
+
+	Removes the character portrait.
 
 * **Background Music**
 
