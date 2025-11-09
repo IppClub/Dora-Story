@@ -12,7 +12,11 @@ commands =
 
 	background: (filename, blur = true) -> emit "Command.Background", filename, blur
 
+	noBackground: -> emit "Command.Background"
+
 	figure: (filename, x = 0, y = 0, scale = 1.0) -> emit "Command.Figure", filename, x, y, scale
+
+	noFigure: -> emit "Command.Figure"
 
 	inputName: ->
 		import "utf-8" as u8
@@ -41,6 +45,11 @@ commands =
 		Director.entry\removeAllChildren!
 		Director.ui\removeAllChildren!
 		Director.entry\gslot "Command.Background", (filename, blur) ->
+			if child := Director.entry\getChildByTag "background"
+				child\removeFromParent!
+			if child := Director.ui\getChildByTag "background"
+				child\removeFromParent!
+			return unless filename
 			bg = with? Sprite filename
 				bgW, bgH = .width, .height
 				updateBGSize = ->
@@ -53,10 +62,6 @@ commands =
 				\gslot "AppChange", (settingName) -> if settingName == "Size"
 					updateBGSize!
 			return unless bg
-			if child := Director.entry\getChildByTag "background"
-				child\removeFromParent!
-			if child := Director.ui\getChildByTag "background"
-				child\removeFromParent!
 			if blur
 				Director.entry\addChild bg, -1, "background"
 			else

@@ -22,6 +22,8 @@
 
 ## 增加的 Yarn Spinner 对话系统指令
 
+&emsp;&emsp;本项目在原版 Dora SSR 的 Yarn Spinner 对话系统基础上，增加了下面的指令。Yarn Spinner 是一门极简的对话脚本语言，可以参考这篇[教学](https://ippclub.atomgit.net/Dora-SSR/zh-Hans/docs/tutorial/Writing%20Game%20Dialogue/introduction-to-yarn)快速上手。
+
 * **玩家姓名输入框**
 
 	```
@@ -38,6 +40,12 @@
 
 	&emsp;&emsp;用于设置背景图片。第一个参数为背景图片路径，第二个参数为是否对背景图片进行模糊处理。
 
+	```
+	<<noBackground>>
+	```
+
+	&emsp;&emsp;用于隐藏当前正在展示的背景图片。
+
 * **角色立绘**
 
 	```
@@ -46,21 +54,27 @@
 
 	&emsp;&emsp;用于设置角色立绘。第一个参数为角色立绘图片路径，第二个参数为立绘图片的 X 轴偏移量，第三个参数为立绘图片的 Y 轴偏移量，第四个参数为立绘图片的缩放比例。
 
+	```
+	<<noFigure>>
+	```
+
+	&emsp;&emsp;用于隐藏当前画面中已经展示的角色立绘图片。
+
 * **背景音乐**
 
-	```
-	<<BGM "Music/军事学园.mp3">>
-	```
+  ```
+  <<BGM "Music/军事学园.mp3">>
+  ```
 
-	&emsp;&emsp;用于设置背景音乐。第一个参数为背景音乐路径。
+  &emsp;&emsp;用于设置背景音乐。第一个参数为背景音乐路径。
 
 * **播放音效**
 
-	```
-	<<SE "Sound/door_knock.wav">>
-	```
+  ```
+  <<SE "Sound/door_knock.wav">>
+  ```
 
-	&emsp;&emsp;用于播放音效。第一个参数为音效文件路径。
+  &emsp;&emsp;用于播放音效。第一个参数为音效文件路径。
 
 * **停止背景音乐**
 
