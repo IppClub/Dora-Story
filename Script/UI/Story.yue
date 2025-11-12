@@ -54,7 +54,9 @@ export default Class Story,
 		@gslot "Command.Preload", (items) -> @_preloads = items
 		@gslot "Command.Figure", (filename, x, y, scale) ->
 			@figure\removeAllChildren!
-			return unless filename
+			unless filename
+				@_dialog.character = ""
+				return
 			with? Sprite filename
 				.x, .y = x, y
 				.scaleX = .scaleY = scale
@@ -103,11 +105,12 @@ export default Class Story,
 		name, characterId = getCharName @_current
 		if characterId == 'vivi'
 			Cache\loadAsync "spine:vikaFigure"
+			@_dialog.character = characterId
 		elseif characterId != ''
 			Cache\loadAsync "spine:#{characterId}Figure"
+			@_dialog.character = characterId
 		text = @_current.text
 		@_reviews[] = :name, :text
-		@_dialog.character = characterId
 		@_dialog.name = name
 		@_dialog.text = text
 		@answerList\removeAllChildren!
