@@ -19,12 +19,12 @@ colorID: 0
 工作人员: 首先，我们需要收集一些基本信息。您的名字是？
 
 -> 我: 提供姓名信息。
-    <<inputName>>
-    <<preload "vika">>
-    <<if $charName == "">>
-        工作人员: 您未输入姓名，我们将称呼您为“匿名玩家”。
-        <<set $charName to "匿名玩家">>
-    <<endif>>
+	<<inputName>>
+	<<preload "vika">>
+	<<if $charName == "">>
+		工作人员: 您未输入姓名，我们将称呼您为“匿名玩家”。
+		<<set $charName to "匿名玩家">>
+	<<endif>>
 
 工作人员: {$charName}，再次欢迎您的加入。接下来请认识一下我们自己的伙伴们吧。
 
