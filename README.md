@@ -66,7 +66,7 @@ This project adds the following commands to the Yarn Spinner dialogue system, wh
 	<<frame "Animation/frame_001", 1.0, 0, 500, 1.5, true>>
 	```
 
-	Plays the frame animation. The first parameter is the path to the frame animation folder, the second is the duration of the animation, the third is whether the X-axis offset should loop, the fourth is the Y-axis offset, the fifth is the scale of the animation, and the sixth is whether the animation should loop.
+	Plays the frame animation. The first parameter is the path to the frame animation folder, the second is the duration of the animation, the third is whether the X-axis offset, the fourth is the Y-axis offset, the fifth is the scale of the animation, and the sixth is whether the animation should loop.
 
 	```
 	<<noFrame>>
