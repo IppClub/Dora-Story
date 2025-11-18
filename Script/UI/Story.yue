@@ -6,6 +6,7 @@ import "Utils" as :Struct
 import "YarnRunner"
 import "Data.Config"
 import "System.Command"
+import preloadFrame, playFrame from "System.FrameAnimation"
 
 Dialog = Struct.Story.Dialog "character", "name", "text"
 
@@ -52,6 +53,15 @@ export default Class Story,
 
 	__init: (dialogFile) =>
 		@gslot "Command.Preload", (items) -> @_preloads = items
+		@gslot "Command.Frame", (folder, duration, loop = true, x = 0, y = 0, scale = 1.0) ->
+			if @frame.children
+				for child in *@frame.children
+					child\once ->
+						sleep child\perform Opacity 0.2, 1, 0
+						child\removeFromParent!
+			return if not folder or not Content\exist(folder) or not Content\isdir folder
+			with? playFrame folder, duration, loop, x, y, scale
+				\addTo @frame
 		@gslot "Command.Figure", (filename, x, y, scale) ->
 			@figure\removeAllChildren!
 			unless filename
@@ -139,13 +149,16 @@ export default Class Story,
 		@_advancing = false
 		if @_preloads
 			for item in *@_preloads
-				if "" == Path\getExt item
-					figureFile = switch item
-						when 'vivi' then "spine:vikaFigure"
-						else "spine:#{item}Figure"
-					Cache\loadAsync figureFile
+				if Content\isdir item
+					preloadFrame item
 				else
-					Cache\loadAsync item
+					if "" == Path\getExt item
+						figureFile = switch item
+							when 'vivi' then "spine:vikaFigure"
+							else "spine:#{item}Figure"
+						thread -> Cache\loadAsync figureFile
+					else
+						thread -> Cache\loadAsync item
 			@_preloads = nil
 
 	showAsync: =>

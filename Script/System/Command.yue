@@ -2,21 +2,33 @@ _ENV = Dora
 
 commands =
 
-	preload: (...) -> emit "Command.Preload", [...,]
+	preload: (...) ->
+		emit "Command.Preload", [...,]
 
-	BGM: (filename) -> Audio\playStream filename, true, 0.5
+	BGM: (filename) ->
+		Audio\playStream filename, true, 0.5
 
-	stopBGM: -> Audio\stopStream 1.0
+	stopBGM: ->
+		Audio\stopStream 1.0
 
-	SE: (filename) -> Audio\play filename, false
+	SE: (filename) ->
+		Audio\play filename, false
 
-	background: (filename, blur = true) -> emit "Command.Background", filename, blur
+	background: (filename, blur = true) ->
+		emit "Command.Background", filename, blur
 
-	noBackground: -> emit "Command.Background"
+	noBackground: ->
+		emit "Command.Background"
 
-	figure: (filename, x = 0, y = 0, scale = 1.0) -> emit "Command.Figure", filename, x, y, scale
+	figure: (filename, x = 0, y = 0, scale = 1.0) ->
+		emit "Command.Figure", filename, x, y, scale
 
 	noFigure: -> emit "Command.Figure"
+
+	frame: (folder, duration, x = 0, y = 0, scale = 1.0, loop = true) ->
+		emit "Command.Frame", folder, duration, loop, x, y, scale
+
+	noFrame: -> emit "Command.Frame"
 
 	inputName: ->
 		import "utf-8" as u8

@@ -12,6 +12,7 @@
 	<AlignNode Name="ui" InUI="True" IsRoot="True">
 		<FullScreenMask/>
 		<AlignNode Name="figure" HAlign="Center" VAlign="Bottom" Ref="True"/>
+		<AlignNode Name="frame" HAlign="Center" VAlign="Bottom" Ref="True"/>
 		<AlignNode Name="talkArea" HAlign="Left" VAlign="Bottom">
 			<SolidRect Name="talkBack" Width="3258" Height="370" Color="0x66000000" Order="-1"/>
 			<Sprite File="button.clip|prompt_chat_2" X="50" Y="340"/>
@@ -94,7 +95,7 @@
 				talkLine2\removeFromParent!
 				talkLine2 = with Line {Vec2(-offset, -208), Vec2(offset, -208)}, Color 0xffffffff
 					\addTo topCenter
-				for item in *{talkArea, rightBottom, rightTop, rightCenter, figure, topCenter}
+				for item in *{talkArea, rightBottom, rightTop, rightCenter, figure, frame, topCenter}
 					item.scaleX = scale
 					item.scaleY = scale
 				talkBack\removeFromParent!
