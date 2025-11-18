@@ -60,6 +60,20 @@ This project adds the following commands to the Yarn Spinner dialogue system, wh
 
 	Removes the character portrait.
 
+* **Frame Animation**
+
+	```
+	<<frame "Animation/frame_001", 1.0, 0, 500, 1.5, true>>
+	```
+
+	Plays the frame animation. The first parameter is the path to the frame animation folder, the second is the duration of the animation, the third is whether the X-axis offset should loop, the fourth is the Y-axis offset, the fifth is the scale of the animation, and the sixth is whether the animation should loop.
+
+	```
+	<<noFrame>>
+	```
+
+	Removes the frame animation.
+
 * **Background Music**
 
 	```
@@ -115,6 +129,8 @@ This project adds the following commands to the Yarn Spinner dialogue system, wh
 	- vika
 	- vivi
 	- yuzijiang
+
+	Also, you can preload frame animation resources by using `<preload "Animation/frame_001">`.
 
 * **Using Project’s Spine Characters**
 
