@@ -80,16 +80,13 @@ function ____exports.playFrame(folder, duration, loop, x, y, scale) -- 18
 			end -- 50
 			sleep(interval) -- 51
 		end -- 51
-		if lastSprite then -- 51
-			lastSprite:removeFromParent() -- 54
-		end -- 54
-		return false -- 56
+		return false -- 53
 	end -- 36
 	if loop then -- 36
-		node:loop(animation) -- 59
-	else -- 59
-		node:once(animation) -- 61
-	end -- 61
-	return node -- 63
+		node:loop(animation) -- 56
+	else -- 56
+		node:once(animation) -- 58
+	end -- 58
+	return node -- 60
 end -- 18
 return ____exports -- 18

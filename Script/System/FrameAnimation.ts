@@ -50,9 +50,6 @@ export function playFrame(folder: string, duration: number, loop: boolean, x: nu
 			lastSprite?.addTo(node);
 			sleep(interval);
 		}
-		if (lastSprite) {
-			lastSprite.removeFromParent();
-		}
 		return false;
 	};
 	if (loop) {
