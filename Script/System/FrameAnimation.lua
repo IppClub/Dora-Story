@@ -58,18 +58,18 @@ function ____exports.playFrame(folder, duration, loop, x, y, scale) -- 18
 		end -- 31
 	)) -- 31
 	local interval = math.max(1 / App.targetFPS, duration / #files) -- 35
-	local function animation() -- 36
-		if frameLoading:get(folder) then -- 36
-			wait(function() return not frameLoading:get(folder) end) -- 38
-		elseif not frameLoading:has(folder) then -- 38
-			frameLoading:set(folder, true) -- 40
-			Cache:loadAsync(__TS__ArrayMap( -- 41
-				files, -- 41
-				function(____, f) return Path(folder, f) end -- 41
-			)) -- 41
-			frameLoading:delete(folder) -- 42
-		end -- 42
-		local lastSprite = nil -- 44
+	local lastSprite = nil -- 36
+	local function animation() -- 37
+		if frameLoading:get(folder) then -- 37
+			wait(function() return not frameLoading:get(folder) end) -- 39
+		elseif not frameLoading:has(folder) then -- 39
+			frameLoading:set(folder, true) -- 41
+			Cache:loadAsync(__TS__ArrayMap( -- 42
+				files, -- 42
+				function(____, f) return Path(folder, f) end -- 42
+			)) -- 42
+			frameLoading:delete(folder) -- 43
+		end -- 43
 		for ____, f in ipairs(files) do -- 45
 			if lastSprite then -- 45
 				lastSprite:removeFromParent() -- 47
@@ -81,8 +81,8 @@ function ____exports.playFrame(folder, duration, loop, x, y, scale) -- 18
 			sleep(interval) -- 51
 		end -- 51
 		return false -- 53
-	end -- 36
-	if loop then -- 36
+	end -- 37
+	if loop then -- 37
 		node:loop(animation) -- 56
 	else -- 56
 		node:once(animation) -- 58

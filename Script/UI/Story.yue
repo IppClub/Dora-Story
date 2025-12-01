@@ -55,7 +55,9 @@ export default Class Story,
 		@gslot "Command.Preload", (items) -> @_preloads = items
 		@gslot "Command.Frame", (folder, duration, loop = true, x = 0, y = 0, scale = 1.0) ->
 			if @frame.children
-				for child in *@frame.children
+				children = [child for child in *@frame.children when child.tag == ""]
+				for child in *children
+					child.tag = "deleted"
 					child\once ->
 						sleep child\perform Opacity 0.2, 1, 0
 						child\removeFromParent!

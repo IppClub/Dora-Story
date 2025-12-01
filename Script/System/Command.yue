@@ -26,6 +26,7 @@ commands =
 	noFigure: -> emit "Command.Figure"
 
 	frame: (folder, duration, x = 0, y = 0, scale = 1.0, loop = true) ->
+		emit "Command.Frame"
 		emit "Command.Frame", folder, duration, loop, x, y, scale
 
 	noFrame: -> emit "Command.Frame"
