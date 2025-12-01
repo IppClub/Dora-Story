@@ -33,6 +33,7 @@ export function playFrame(folder: string, duration: number, loop: boolean, x: nu
 		return ext === 'png' || ext === 'jpg';
 	}).sort();
 	const interval = math.max(1.0 / App.targetFPS, duration / files.length);
+	let lastSprite: null | Sprite.Type = null;
 	const animation = () => {
 		if (frameLoading.get(folder)) {
 			wait(() => !frameLoading.get(folder));
@@ -41,7 +42,6 @@ export function playFrame(folder: string, duration: number, loop: boolean, x: nu
 			Cache.loadAsync(files.map(f => Path(folder, f)));
 			frameLoading.delete(folder);
 		}
-		let lastSprite: null | Sprite.Type = null;
 		for (let f of files) {
 			if (lastSprite) {
 				lastSprite.removeFromParent();
@@ -49,9 +49,6 @@ export function playFrame(folder: string, duration: number, loop: boolean, x: nu
 			lastSprite = Sprite(Path(folder, f));
 			lastSprite?.addTo(node);
 			sleep(interval);
-		}
-		if (lastSprite) {
-			lastSprite.removeFromParent();
 		}
 		return false;
 	};

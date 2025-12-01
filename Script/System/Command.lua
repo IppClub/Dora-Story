@@ -15,30 +15,30 @@ local tostring = _G.tostring -- 1
 local table = _G.table -- 1
 local select = _G.select -- 1
 local _module_0 = nil -- 1
-local _anon_func_0 = function(LsdOSBack) -- 83
-	local _with_0 = LsdOSBack() -- 81
-	_with_0.order = -1 -- 82
-	_with_0:alignLayout() -- 83
-	return _with_0 -- 81
-end -- 81
-local _anon_func_1 = function(Story, filename, thread) -- 87
-	local _with_0 = Story(filename) -- 84
-	_with_0.order = 0 -- 85
-	_with_0:alignLayout() -- 86
-	thread(function() -- 87
-		return _with_0:showAsync() -- 87
-	end) -- 87
-	return _with_0 -- 84
-end -- 84
-local _anon_func_2 = function(select, tostring, ...) -- 90
-	local _accum_0 = { } -- 90
-	local _len_0 = 1 -- 90
-	for i = 1, select('#', ...) do -- 90
-		_accum_0[_len_0] = tostring(select(i, ...)) -- 90
-		_len_0 = _len_0 + 1 -- 90
-	end -- 90
-	return _accum_0 -- 90
-end -- 90
+local _anon_func_0 = function(LsdOSBack) -- 84
+	local _with_0 = LsdOSBack() -- 82
+	_with_0.order = -1 -- 83
+	_with_0:alignLayout() -- 84
+	return _with_0 -- 82
+end -- 82
+local _anon_func_1 = function(Story, filename, thread) -- 88
+	local _with_0 = Story(filename) -- 85
+	_with_0.order = 0 -- 86
+	_with_0:alignLayout() -- 87
+	thread(function() -- 88
+		return _with_0:showAsync() -- 88
+	end) -- 88
+	return _with_0 -- 85
+end -- 85
+local _anon_func_2 = function(select, tostring, ...) -- 91
+	local _accum_0 = { } -- 91
+	local _len_0 = 1 -- 91
+	for i = 1, select('#', ...) do -- 91
+		_accum_0[_len_0] = tostring(select(i, ...)) -- 91
+		_len_0 = _len_0 + 1 -- 91
+	end -- 91
+	return _accum_0 -- 91
+end -- 91
 local commands = setmetatable({ -- 5
 	preload = function(...) -- 5
 		return emit("Command.Preload", { -- 6
@@ -91,104 +91,105 @@ local commands = setmetatable({ -- 5
 		if loop == nil then -- 28
 			loop = true -- 28
 		end -- 28
-		return emit("Command.Frame", folder, duration, loop, x, y, scale) -- 29
+		emit("Command.Frame") -- 29
+		return emit("Command.Frame", folder, duration, loop, x, y, scale) -- 30
 	end, -- 28
-	noFrame = function() -- 31
-		return emit("Command.Frame") -- 31
-	end, -- 31
-	inputName = function() -- 33
-		local u8 = require("utf-8") -- 34
-		local InputBox = require("UI.InputBox") -- 35
-		local Config = require("Data.Config") -- 36
-		local _with_0 = InputBox({ -- 37
-			hint = "请输入你的姓名" -- 37
-		}) -- 37
-		_with_0.visible = false -- 38
-		_with_0:schedule(once(function() -- 39
-			sleep() -- 40
-			_with_0.visible = true -- 41
-		end)) -- 39
-		_with_0:addTo(Director.ui) -- 42
-		_with_0:slot("Inputed", function(name) -- 43
-			Config.charName = u8.sub(name, 1, 10) -- 44
-			_with_0:removeFromParent() -- 45
-			return emit("Story.Advance") -- 46
-		end) -- 43
-		coroutine.yield("Command") -- 47
-		return _with_0 -- 37
-	end, -- 33
-	chapter = function(filename) -- 49
-		local LsdOSBack = require("UI.LsdOSBack") -- 50
-		local Story = require("UI.Story") -- 51
-		local Config = require("Data.Config") -- 52
-		if filename then -- 53
-			Config.chapter = filename -- 54
-		else -- 56
-			filename = Config.chapter -- 56
-		end -- 53
-		Director.entry:removeAllChildren() -- 57
-		Director.ui:removeAllChildren() -- 58
-		Director.entry:gslot("Command.Background", function(filename, blur) -- 59
-			do -- 60
-				local child = Director.entry:getChildByTag("background") -- 60
-				if child then -- 60
-					child:removeFromParent() -- 61
-				end -- 60
-			end -- 60
-			do -- 62
-				local child = Director.ui:getChildByTag("background") -- 62
-				if child then -- 62
-					child:removeFromParent() -- 63
-				end -- 62
-			end -- 62
-			if not filename then -- 64
-				return -- 64
-			end -- 64
-			local bg -- 65
-			do -- 65
-				local _with_0 = Sprite(filename) -- 65
-				if _with_0 ~= nil then -- 65
-					local bgW, bgH = _with_0.width, _with_0.height -- 66
-					local updateBGSize -- 67
-					updateBGSize = function() -- 67
-						local width, height -- 68
-						do -- 68
-							local _obj_0 = blur and View.size or App.bufferSize -- 68
-							width, height = _obj_0.width, _obj_0.height -- 68
-						end -- 68
-						if bgW / bgH > width / height then -- 69
-							_with_0.width, _with_0.height = bgW * height / bgH, height -- 70
-						else -- 72
-							_with_0.width, _with_0.height = width, bgH * width / bgW -- 72
-						end -- 69
-					end -- 67
-					updateBGSize() -- 73
-					_with_0:gslot("AppChange", function(settingName) -- 74
-						if settingName == "Size" then -- 74
-							return updateBGSize() -- 75
-						end -- 74
-					end) -- 74
-				end -- 65
-				bg = _with_0 -- 65
+	noFrame = function() -- 32
+		return emit("Command.Frame") -- 32
+	end, -- 32
+	inputName = function() -- 34
+		local u8 = require("utf-8") -- 35
+		local InputBox = require("UI.InputBox") -- 36
+		local Config = require("Data.Config") -- 37
+		local _with_0 = InputBox({ -- 38
+			hint = "请输入你的姓名" -- 38
+		}) -- 38
+		_with_0.visible = false -- 39
+		_with_0:schedule(once(function() -- 40
+			sleep() -- 41
+			_with_0.visible = true -- 42
+		end)) -- 40
+		_with_0:addTo(Director.ui) -- 43
+		_with_0:slot("Inputed", function(name) -- 44
+			Config.charName = u8.sub(name, 1, 10) -- 45
+			_with_0:removeFromParent() -- 46
+			return emit("Story.Advance") -- 47
+		end) -- 44
+		coroutine.yield("Command") -- 48
+		return _with_0 -- 38
+	end, -- 34
+	chapter = function(filename) -- 50
+		local LsdOSBack = require("UI.LsdOSBack") -- 51
+		local Story = require("UI.Story") -- 52
+		local Config = require("Data.Config") -- 53
+		if filename then -- 54
+			Config.chapter = filename -- 55
+		else -- 57
+			filename = Config.chapter -- 57
+		end -- 54
+		Director.entry:removeAllChildren() -- 58
+		Director.ui:removeAllChildren() -- 59
+		Director.entry:gslot("Command.Background", function(filename, blur) -- 60
+			do -- 61
+				local child = Director.entry:getChildByTag("background") -- 61
+				if child then -- 61
+					child:removeFromParent() -- 62
+				end -- 61
+			end -- 61
+			do -- 63
+				local child = Director.ui:getChildByTag("background") -- 63
+				if child then -- 63
+					child:removeFromParent() -- 64
+				end -- 63
+			end -- 63
+			if not filename then -- 65
+				return -- 65
 			end -- 65
-			if not bg then -- 76
-				return -- 76
-			end -- 76
-			if blur then -- 77
-				return Director.entry:addChild(bg, -1, "background") -- 78
-			else -- 80
-				return Director.ui:addChild(bg, -1, "background") -- 80
+			local bg -- 66
+			do -- 66
+				local _with_0 = Sprite(filename) -- 66
+				if _with_0 ~= nil then -- 66
+					local bgW, bgH = _with_0.width, _with_0.height -- 67
+					local updateBGSize -- 68
+					updateBGSize = function() -- 68
+						local width, height -- 69
+						do -- 69
+							local _obj_0 = blur and View.size or App.bufferSize -- 69
+							width, height = _obj_0.width, _obj_0.height -- 69
+						end -- 69
+						if bgW / bgH > width / height then -- 70
+							_with_0.width, _with_0.height = bgW * height / bgH, height -- 71
+						else -- 73
+							_with_0.width, _with_0.height = width, bgH * width / bgW -- 73
+						end -- 70
+					end -- 68
+					updateBGSize() -- 74
+					_with_0:gslot("AppChange", function(settingName) -- 75
+						if settingName == "Size" then -- 75
+							return updateBGSize() -- 76
+						end -- 75
+					end) -- 75
+				end -- 66
+				bg = _with_0 -- 66
+			end -- 66
+			if not bg then -- 77
+				return -- 77
 			end -- 77
-		end) -- 59
-		Director.entry:addChild(_anon_func_0(LsdOSBack)) -- 81
-		return Director.ui:addChild(_anon_func_1(Story, filename, thread)) -- 87
-	end, -- 49
-}, { -- 89
-	__index = function(_self, name) -- 89
-		return function(...) -- 89
-			return print("[command]: " .. tostring(name) .. "(" .. tostring(table.concat(_anon_func_2(select, tostring, ...), ', ')) .. ")") -- 90
-		end -- 90
-	end -- 89
+			if blur then -- 78
+				return Director.entry:addChild(bg, -1, "background") -- 79
+			else -- 81
+				return Director.ui:addChild(bg, -1, "background") -- 81
+			end -- 78
+		end) -- 60
+		Director.entry:addChild(_anon_func_0(LsdOSBack)) -- 82
+		return Director.ui:addChild(_anon_func_1(Story, filename, thread)) -- 88
+	end, -- 50
+}, { -- 90
+	__index = function(_self, name) -- 90
+		return function(...) -- 90
+			return print("[command]: " .. tostring(name) .. "(" .. tostring(table.concat(_anon_func_2(select, tostring, ...), ', ')) .. ")") -- 91
+		end -- 91
+	end -- 90
 }) -- 3
-_module_0 = commands -- 92
-return _module_0 -- 92
+_module_0 = commands -- 93
+return _module_0 -- 93
