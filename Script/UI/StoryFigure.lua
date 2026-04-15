@@ -82,9 +82,9 @@ do -- 45
 					spine.scaleX = scale -- 57
 					spine.scaleY = scale -- 57
 				end -- 56
-			end) -- 57
+			end) -- 52
 		end) -- 48
 	end -- 47
-end -- 57
+end -- 45
 return node1 -- 46
 end

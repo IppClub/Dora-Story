@@ -18,7 +18,7 @@ do -- 11
 	local scale = h / H -- 13
 	bg.scaleX = scale -- 14
 	bg.scaleY = scale -- 15
-end -- 15
+end -- 11
 end) -- 12
 return item1 -- 12
 end

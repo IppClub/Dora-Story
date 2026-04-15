@@ -63,13 +63,13 @@ do -- 26
 				3 -- 40
 			} -- 40
 		} -- 36
-		for _index_0 = 1, #_list_0 do -- 41
+		for _index_0 = 1, #_list_0 do -- 36
 			local _des_0 = _list_0[_index_0] -- 36
 			local x, y = _des_0[1], _des_0[2] -- 36
 			back1:setPos(x, y, back1:getPos(x, y) - offset) -- 42
 			back2:setPos(x, y, back2:getPos(x, y) - offset) -- 43
-		end -- 43
+		end -- 36
 	end -- 29
-end -- 43
+end -- 26
 return node -- 27
 end

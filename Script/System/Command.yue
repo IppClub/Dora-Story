@@ -1,4 +1,5 @@
 _ENV = Dora
+import global
 
 commands =
 

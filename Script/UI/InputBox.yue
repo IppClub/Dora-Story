@@ -1,6 +1,7 @@
 _ENV = Dora
 import "utf-8" as u8
 import "UI.View.InputBox"
+import global
 
 TextInput = Class ((args) ->
 	{

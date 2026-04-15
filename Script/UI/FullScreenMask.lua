@@ -18,11 +18,11 @@ do -- 7
 	_with_0.touchEnabled = true -- 12
 	_with_0.swallowTouches = true -- 13
 	_with_0:addTo(lb) -- 14
-end -- 14
+end -- 7
 end) -- 8
 do -- 16
 	mask.touchEnabled = true -- 18
 	mask.swallowTouches = true -- 19
-end -- 19
+end -- 16
 return lb -- 17
 end

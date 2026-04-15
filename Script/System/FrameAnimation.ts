@@ -33,7 +33,7 @@ export function playFrame(folder: string, duration: number, loop: boolean, x: nu
 		return ext === 'png' || ext === 'jpg';
 	}).sort();
 	const interval = math.max(1.0 / App.targetFPS, duration / files.length);
-	let lastSprite: null | Sprite.Type = null;
+	let lastSprite: undefined | Sprite.Type = undefined;
 	const animation = () => {
 		if (frameLoading.get(folder)) {
 			wait(() => !frameLoading.get(folder));

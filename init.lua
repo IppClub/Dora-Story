@@ -1,25 +1,27 @@
 -- [yue]: init.yue
-local Path = Dora.Path -- 1
-local Content = Dora.Content -- 1
-do -- 2
-	local scriptPath = Path:getScriptPath(...) -- 2
-	if scriptPath then -- 2
-		local _list_0 = { -- 4
-			scriptPath, -- 4
-			Path(scriptPath, "Script"), -- 5
-			Path(scriptPath, "Spine"), -- 6
-			Path(scriptPath, "Image"), -- 7
-			Path(scriptPath, "Font") -- 8
-		} -- 3
-		for _index_0 = 1, #_list_0 do -- 9
-			local path = _list_0[_index_0] -- 3
-			Content:insertSearchPath(1, path) -- 10
-		end -- 10
-	else -- 11
-		return -- 11
-	end -- 2
-end -- 2
-local Command = require("System.Command") -- 13
-local Config = require("Data.Config") -- 14
-Config.chapter = "start.yarn" -- 16
-return Command.chapter() -- 18
+local _ENV = Dora -- 1
+local Path <const> = Path -- 2
+local Content <const> = Content -- 2
+local require <const> = require -- 2
+do -- 4
+	local scriptPath = Path:getScriptPath(...) -- 4
+	if scriptPath then -- 4
+		local _list_0 = { -- 6
+			scriptPath, -- 6
+			Path(scriptPath, "Script"), -- 7
+			Path(scriptPath, "Spine"), -- 8
+			Path(scriptPath, "Image"), -- 9
+			Path(scriptPath, "Font") -- 10
+		} -- 5
+		for _index_0 = 1, #_list_0 do -- 5
+			local path = _list_0[_index_0] -- 5
+			Content:insertSearchPath(1, path) -- 12
+		end -- 5
+	else -- 13
+		return -- 13
+	end -- 4
+end -- 4
+local Command = require("System.Command") -- 15
+local Config = require("Data.Config") -- 16
+Config.chapter = "start.yarn" -- 18
+return Command.chapter() -- 20

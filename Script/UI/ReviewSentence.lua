@@ -26,6 +26,6 @@ do -- 10
 	node.height = height + 60 -- 13
 	nameLabel.y = height - 30 -- 14
 	textLabel.y = height - 30 -- 15
-end -- 15
+end -- 10
 return node -- 11
 end

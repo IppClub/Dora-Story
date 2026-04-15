@@ -40,7 +40,7 @@ do -- 19
 	local extraScale = math.max(scale, ratio) -- 23
 	box.scaleX = extraScale -- 24
 	box.scaleY = extraScale -- 25
-end -- 25
+end -- 19
 end) -- 20
 return item1 -- 20
 end
